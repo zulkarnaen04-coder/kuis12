@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>KUIS MUSIK KELAS 7</title>
+  <title>KUIS MUSIK KELAS 7 - TRENDING GAME EDITION</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; user-select: none; -webkit-user-select: none; }
-    body { background: linear-gradient(135deg, #0d1b2a, #1b263b); color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; padding: 10px; overflow-x: hidden; }
+    body { background: #0f0c1b; color: #ffffff; min-height: 100vh; display: flex; flex-direction: column; padding: 10px; overflow-x: hidden; }
     
     /* Anti-Cheat Overlay */
     .cheat-warning { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(230, 57, 70, 0.95); z-index: 9999; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
@@ -14,64 +14,146 @@
     .cheat-warning p { font-size: 16px; color: #f8f9fa; margin-bottom: 20px; line-height: 1.5; }
     .cheat-warning button { background: #fff; color: #e63946; font-size: 18px; font-weight: bold; padding: 12px 30px; border: none; border-radius: 25px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 
-    /* Header */
-    .header { background: #1b263b; border-radius: 12px; padding: 12px 15px; border: 2px solid #f4a261; box-shadow: 0 4px 10px rgba(0,0,0,0.3); margin-bottom: 15px; }
+    /* Header Game Style */
+    .header { background: #1a162b; border-radius: 16px; padding: 12px 15px; border: 3px solid #ff007f; box-shadow: 0 0 15px rgba(255, 0, 127, 0.4); margin-bottom: 15px; }
     .top-info { display: flex; justify-content: space-between; align-items: center; }
-    .student-info { font-size: 16px; color: #a8dadc; margin-bottom: 6px; font-weight: 600; }
-    .q-counter { font-size: 16px; font-weight: bold; color: #f4a261; }
-    .score-badge { background: #2a9d8f; padding: 6px 16px; border-radius: 15px; font-size: 16px; font-weight: bold; color: #fff; }
+    .student-info { font-size: 16px; color: #00f0ff; margin-bottom: 6px; font-weight: bold; text-shadow: 0 0 5px #00f0ff; }
+    .q-counter { font-size: 16px; font-weight: bold; color: #ffe600; }
+    .score-badge { background: linear-gradient(135deg, #00f0ff, #ff007f); padding: 8px 18px; border-radius: 20px; font-size: 18px; font-weight: 900; color: #fff; text-shadow: 1px 1px 2px #000; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
 
-    /* Layout Ubin (Grid Tile Layout) */
-    .tiles-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); gap: 10px; padding: 10px; background: #1b263b; border: 2px solid #415a77; border-radius: 15px; flex-grow: 1; max-height: calc(100vh - 180px); overflow-y: auto; }
-    .tile-btn { background: #2a3d54; border: 2px solid #415a77; border-radius: 10px; color: #fff; font-size: 16px; font-weight: bold; height: 60px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
-    .tile-btn:active { transform: scale(0.95); }
-    .tile-btn:hover { background: #3a506b; border-color: #f4a261; }
-    .tile-btn.correct { background: #2a9d8f !important; border-color: #2a9d8f !important; color: #fff !important; cursor: not-allowed; }
-    .tile-btn.wrong { background: #e63946 !important; border-color: #e63946 !important; color: #fff !important; cursor: not-allowed; }
+    /* Layout Ubin 3D Game */
+    .tiles-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); gap: 12px; padding: 15px; background: #151221; border: 3px solid #7928ca; border-radius: 20px; flex-grow: 1; max-height: calc(100vh - 180px); overflow-y: auto; box-shadow: inset 0 0 20px rgba(0,0,0,0.8); }
+    
+    .tile-btn { 
+      background: linear-gradient(180deg, #2d264a, #1a162b); 
+      border: 2px solid #00f0ff; 
+      border-bottom: 6px solid #00a8b3; 
+      border-radius: 12px; 
+      color: #fff; 
+      font-size: 18px; 
+      font-weight: 900; 
+      height: 60px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      cursor: pointer; 
+      transition: all 0.1s ease; 
+      box-shadow: 0 6px 0 #008088, 0 10px 10px rgba(0,0,0,0.5); 
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+    .tile-btn:active { 
+      transform: translateY(4px); 
+      border-bottom-width: 2px; 
+      box-shadow: 0 2px 0 #008088, 0 4px 5px rgba(0,0,0,0.5); 
+    }
+    .tile-btn.correct { 
+      background: linear-gradient(180deg, #10b981, #059669) !important; 
+      border-color: #34d399 !important; 
+      border-bottom: 6px solid #047857 !important; 
+      box-shadow: 0 6px 0 #064e3b, 0 0 12px rgba(16, 185, 129, 0.6) !important; 
+      cursor: not-allowed; 
+    }
+    .tile-btn.wrong { 
+      background: linear-gradient(180deg, #ef4444, #dc2626) !important; 
+      border-color: #f87171 !important; 
+      border-bottom: 6px solid #b91c1c !important; 
+      box-shadow: 0 6px 0 #7f1d1d, 0 0 12px rgba(239, 68, 68, 0.6) !important; 
+      cursor: not-allowed; 
+    }
 
     /* Finish Action Button */
     .finish-bar { margin-top: 15px; text-align: center; }
-    .finish-btn { background: #2a9d8f; color: #fff; font-size: 18px; font-weight: bold; padding: 14px 30px; border: none; border-radius: 25px; cursor: pointer; width: 100%; max-width: 400px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display: none; }
+    .finish-btn { 
+      background: linear-gradient(135deg, #ffe600, #ff007f); 
+      color: #fff; 
+      font-size: 20px; 
+      font-weight: 900; 
+      padding: 14px 30px; 
+      border: 2px solid #fff; 
+      border-bottom: 6px solid #b30059; 
+      border-radius: 30px; 
+      cursor: pointer; 
+      width: 100%; 
+      max-width: 400px; 
+      text-transform: uppercase; 
+      letter-spacing: 1px; 
+      box-shadow: 0 6px 0 #800040, 0 0 15px rgba(255, 0, 127, 0.5); 
+      display: none; 
+    }
+    .finish-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #800040; }
 
     /* Modal Dialog Soal */
-    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 9000; justify-content: center; align-items: center; padding: 15px; }
-    .modal-card { background: #1b263b; border: 2px solid #f4a261; border-radius: 15px; padding: 20px; width: 100%; max-width: 500px; box-shadow: 0 8px 20px rgba(0,0,0,0.6); display: flex; flex-direction: column; position: relative; max-height: 90vh; overflow-y: auto; }
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 9000; justify-content: center; align-items: center; padding: 15px; backdrop-filter: blur(5px); }
+    .modal-card { background: #1a162b; border: 3px solid #00f0ff; border-radius: 20px; padding: 20px; width: 100%; max-width: 500px; box-shadow: 0 0 25px rgba(0, 240, 255, 0.3); display: flex; flex-direction: column; position: relative; max-height: 90vh; overflow-y: auto; }
     .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .modal-title { font-size: 16px; font-weight: bold; color: #f4a261; }
-    .close-modal-btn { background: #e63946; color: #fff; border: none; font-weight: bold; padding: 4px 10px; border-radius: 5px; cursor: pointer; }
+    .modal-title { font-size: 18px; font-weight: 900; color: #00f0ff; text-transform: uppercase; letter-spacing: 1px; }
+    .close-modal-btn { background: #ef4444; color: #fff; border: none; font-weight: bold; padding: 6px 12px; border-radius: 8px; cursor: pointer; box-shadow: 0 3px 0 #991b1b; }
 
     /* Timer UI Dalam Modal */
-    .timer-container { width: 100%; background: #0d1b2a; border-radius: 10px; height: 16px; border: 1px solid #415a77; overflow: hidden; position: relative; margin-bottom: 15px; }
-    .timer-bar { height: 100%; width: 100%; background: linear-gradient(90deg, #2a9d8f, #e76f51); transition: width 1s linear, background-color 0.5s; }
-    .timer-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: bold; color: #fff; text-shadow: 1px 1px 2px #000; }
+    .timer-container { width: 100%; background: #0f0c1b; border-radius: 10px; height: 18px; border: 2px solid #7928ca; overflow: hidden; position: relative; margin-bottom: 15px; }
+    .timer-bar { height: 100%; width: 100%; background: linear-gradient(90deg, #00f0ff, #ff007f); transition: width 1s linear; }
+    .timer-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 12px; font-weight: 900; color: #fff; text-shadow: 1px 1px 2px #000; }
 
-    /* Pertanyaan & Opsi Jawaban */
-    .question-box { background: #0d1b2a; border: 1px solid #f4a261; padding: 15px; border-radius: 10px; font-size: 16px; font-weight: bold; line-height: 1.4; text-align: center; min-height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #f4a261; margin-bottom: 15px; }
-    .audio-btn { background: #e76f51; color: #fff; border: none; padding: 10px 20px; font-size: 15px; font-weight: bold; border-radius: 20px; cursor: pointer; margin-top: 12px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
-    .audio-btn:active { transform: scale(0.95); }
+    /* Pertanyaan & Opsi Jawaban 3D */
+    .question-box { background: #0f0c1b; border: 2px solid #ffe600; padding: 15px; border-radius: 12px; font-size: 16px; font-weight: bold; line-height: 1.4; text-align: center; min-height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #ffe600; margin-bottom: 15px; box-shadow: inset 0 0 10px rgba(255, 230, 0, 0.2); }
+    .audio-btn { background: linear-gradient(135deg, #ff007f, #7928ca); color: #fff; border: 2px solid #fff; border-bottom: 4px solid #4a1580; padding: 10px 20px; font-size: 15px; font-weight: bold; border-radius: 20px; cursor: pointer; margin-top: 12px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+    .audio-btn:active { transform: translateY(2px); }
 
-    .options-grid { display: flex; flex-direction: column; gap: 10px; }
-    .opt-btn { background: #2a3d54; border: 2px solid #415a77; color: #fff; padding: 12px 15px; border-radius: 10px; font-size: 15px; font-weight: 600; text-align: center; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; -webkit-tap-highlight-color: transparent; }
-    .opt-btn:active { transform: scale(0.98); }
-    .opt-btn:hover { background: #3a506b; border-color: #f4a261; }
-    .opt-btn.correct { background: #2a9d8f !important; border-color: #2a9d8f !important; color: #fff !important; }
-    .opt-btn.wrong { background: #e63946 !important; border-color: #e63946 !important; color: #fff !important; }
+    .options-grid { display: flex; flex-direction: column; gap: 12px; }
+    .opt-btn { 
+      background: linear-gradient(180deg, #2d264a, #1a162b); 
+      border: 2px solid #7928ca; 
+      border-bottom: 5px solid #4a1580; 
+      color: #fff; 
+      padding: 12px 15px; 
+      border-radius: 12px; 
+      font-size: 15px; 
+      font-weight: bold; 
+      text-align: center; 
+      cursor: pointer; 
+      transition: all 0.1s ease; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3); 
+    }
+    .opt-btn:active { transform: translateY(3px); border-bottom-width: 2px; }
+    .opt-btn.correct { background: linear-gradient(180deg, #10b981, #059669) !important; border-color: #34d399 !important; border-bottom: 5px solid #047857 !important; color: #fff !important; }
+    .opt-btn.wrong { background: linear-gradient(180deg, #ef4444, #dc2626) !important; border-color: #f87171 !important; border-bottom: 5px solid #b91c1c !important; color: #fff !important; }
 
-    /* Start Screen Overlay */
-    .start-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0d1b2a; z-index: 9998; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; overflow-y: auto; }
-    .start-title { color: #f4a261; font-size: 28px; font-weight: bold; margin-bottom: 8px; }
-    .start-desc { color: #a8dadc; font-size: 13px; margin-bottom: 20px; line-height: 1.4; }
+    /* Trending Start Screen Overlay */
+    .start-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #2d264a 0%, #0f0c1b 100%); z-index: 9998; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; overflow-y: auto; }
+    .start-title { color: #00f0ff; font-size: 32px; font-weight: 900; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff; }
+    .start-subtitle { color: #ff007f; font-size: 18px; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 0 10px #ff007f; }
     
     /* Input Form Siswa */
-    .student-form { background: #1b263b; border: 2px solid #f4a261; padding: 15px; border-radius: 12px; width: 100%; max-width: 350px; margin-bottom: 15px; text-align: left; }
+    .student-form { background: #1a162b; border: 3px solid #ff007f; padding: 20px; border-radius: 16px; width: 100%; max-width: 360px; margin-bottom: 20px; text-align: left; box-shadow: 0 0 20px rgba(255, 0, 127, 0.3); }
     .form-group { margin-bottom: 12px; }
-    .form-group label { display: block; font-size: 13px; color: #f4a261; font-weight: bold; margin-bottom: 5px; }
-    .form-group input { width: 100%; padding: 10px 12px; font-size: 14px; border-radius: 8px; border: 1px solid #415a77; background: #0d1b2a; color: #fff; outline: none; user-select: text; -webkit-user-select: text; }
-    .form-group input:focus { border-color: #f4a261; }
+    .form-group label { display: block; font-size: 13px; color: #ffe600; font-weight: bold; margin-bottom: 6px; text-transform: uppercase; }
+    .form-group input { width: 100%; padding: 12px; font-size: 15px; border-radius: 10px; border: 2px solid #7928ca; background: #0f0c1b; color: #fff; outline: none; user-select: text; -webkit-user-select: text; }
+    .form-group input:focus { border-color: #00f0ff; box-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
 
-    .rule-box { background: #1b263b; border: 1px solid #415a77; padding: 12px; border-radius: 10px; text-align: left; font-size: 12px; margin-bottom: 20px; width: 100%; max-width: 350px; }
-    .rule-box li { margin-bottom: 6px; color: #fff; }
-    .start-btn { background: #2a9d8f; color: #fff; font-size: 18px; font-weight: bold; padding: 14px 40px; border: none; border-radius: 30px; cursor: pointer; box-shadow: 0 4px 12px rgba(42,157,143,0.4); width: 100%; max-width: 350px; }
+    .rule-box { background: #1a162b; border: 2px solid #7928ca; padding: 15px; border-radius: 12px; text-align: left; font-size: 12px; margin-bottom: 20px; width: 100%; max-width: 360px; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
+    .rule-box li { margin-bottom: 6px; color: #e2e8f0; }
+    
+    .start-btn { 
+      background: linear-gradient(135deg, #00f0ff, #7928ca); 
+      color: #fff; 
+      font-size: 22px; 
+      font-weight: 900; 
+      padding: 16px 40px; 
+      border: 2px solid #fff; 
+      border-bottom: 6px solid #008088; 
+      border-radius: 40px; 
+      cursor: pointer; 
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.6); 
+      width: 100%; 
+      max-width: 360px; 
+      text-transform: uppercase; 
+      letter-spacing: 2px; 
+      transition: all 0.1s ease;
+    }
+    .start-btn:active { transform: translateY(4px); box-shadow: 0 0 10px rgba(0, 240, 255, 0.6); }
   </style>
 </head>
 <body>
@@ -83,10 +165,10 @@
     <button onclick="resumeQuiz()">LANJUTKAN KUIS</button>
   </div>
 
-  <!-- Screen Awal / Start -->
+  <!-- Screen Awal / Start Game Trending -->
   <div class="start-screen" id="start-screen">
-    <div class="start-title">ZULKARNAEN KUIS MUSIK SMP</div>
-    <div class="start-desc">Sistem Kuis Mode Ubin (Grid) Anti-Curang & Terdata di Google Sheets</div>
+    <div class="start-title">ZULKARNAEN</div>
+    <div class="start-subtitle">🎮 KUIS MUSIK SMP 🎮</div>
     
     <div class="student-form">
       <div class="form-group">
@@ -100,17 +182,17 @@
     </div>
 
     <div class="rule-box">
-      <strong style="color:#f4a261; display:block; margin-bottom:6px;">PERATURAN KUIS:</strong>
+      <strong style="color:#ffe600; display:block; margin-bottom:6px; text-transform:uppercase;">ATURAN PERMAINAN:</strong>
       <ul>
-        <li>🟦 <strong>Mode Ubin:</strong> Bebas memilih ubin mana saja untuk dijawab terlebih dahulu.</li>
+        <li>🎲 <strong>Ubin 3D:</strong> Bebas memilih ubin mana saja untuk dijawab terlebih dahulu.</li>
+        <li>💯 <strong>Sistem Skor:</strong> Tiap soal bernilai 2 poin (Total 50 Soal = 100 Poin).</li>
         <li>⏱️ <strong>Waktu Soal:</strong> 1 Menit (60 Detik) per soal yang dibuka.</li>
         <li>🔊 <strong>Soal Bersuara:</strong> Tekan tombol speaker untuk mendengarkan audio nada/ritme.</li>
-        <li>🚫 <strong>Dilarang Pindah Aplikasi:</strong> Keluar browser / tab lain terdeteksi curang.</li>
-        <li>⚠️ <strong>Batas Pelanggaran:</strong> Maksimal 3 kali sebelum didiskualifikasi!</li>
+        <li>🚫 <strong>Anti-Curang:</strong> Dilarang pindah tab/aplikasi saat bermain.</li>
         <li>📊 <strong>Rekap Otomatis:</strong> Hasil kuis langsung terkirim ke Google Sheets guru.</li>
       </ul>
     </div>
-    <button class="start-btn" onclick="validateAndStart()">MULAI KUIS</button>
+    <button class="start-btn" onclick="validateAndStart()">START GAME 🚀</button>
   </div>
 
   <!-- Header Section -->
@@ -118,11 +200,11 @@
     <div class="student-info" id="display-student-info">Siswa: - | Kelas: -</div>
     <div class="top-info">
       <div class="q-counter" id="q-counter">Terjawab: 0 / 50 Soal</div>
-      <div class="score-badge" id="score-badge">Skor: 0</div>
+      <div class="score-badge" id="score-badge">SKOR: 0</div>
     </div>
   </div>
 
-  <!-- Grid Ubin Soal -->
+  <!-- Grid Ubin Soal 3D -->
   <div class="tiles-container" id="tiles-container"></div>
 
   <!-- Tombol Selesai Kuis -->
@@ -155,9 +237,10 @@
   </div>
 
   <script>
+    // URL Web Google Sheets Sesuai Permintaan
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwLlFjDUN03qJ4oRzW4RXMetplgcasO4AW-6HZv6OduRg8IRqiDYihlj37hYBK-HZJm/exec";
 
-    // WEB AUDIO SYNTHESIZER ENGINE (DAPAT DIJALANKAN DI SEMUA BROWSER)
+    // WEB AUDIO SYNTHESIZER ENGINE (SUARA INSTRUMEN + EFEK GAME BENAR/SALAH)
     let audioCtx = null;
 
     function initAudioContext() {
@@ -172,6 +255,56 @@
       }
     }
 
+    // Efek Suara Game Trending
+    function playSFX(type) {
+      initAudioContext();
+      if (!audioCtx) return;
+
+      const now = audioCtx.currentTime;
+
+      if (type === 'correct') {
+        const osc1 = audioCtx.createOscillator();
+        const osc2 = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc1.type = 'sine';
+        osc2.type = 'triangle';
+
+        osc1.frequency.setValueAtTime(587.33, now); // D5
+        osc1.frequency.setValueAtTime(880, now + 0.1); // A5
+
+        osc2.frequency.setValueAtTime(1174.66, now + 0.1);
+
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc1.start(now);
+        osc2.start(now);
+        osc1.stop(now + 0.35);
+        osc2.stop(now + 0.35);
+      } else if (type === 'wrong') {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(150, now);
+        osc.frequency.setValueAtTime(100, now + 0.15);
+
+        gain.gain.setValueAtTime(0.4, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.4);
+      }
+    }
+
     function playAudioPattern(audioData) {
       initAudioContext();
       if (!audioCtx) return;
@@ -181,40 +314,44 @@
       const now = audioCtx.currentTime + 0.05;
 
       if (audioData.type === 'single') {
-        playTone(audioData.duration * beatSec, now, audioData.instrument || 'sine');
+        playTone(audioData.duration * beatSec, now, audioData.instrument || 'sine', audioData.freq || 523.25);
       } else if (audioData.type === 'pattern') {
         let currentOffset = 0;
         audioData.notes.forEach(note => {
           if (note.dur > 0) {
-            playTone(note.dur * beatSec, now + currentOffset, note.inst || 'sine');
+            playTone(note.dur * beatSec, now + currentOffset, note.inst || 'sine', note.freq || 523.25);
           }
           currentOffset += note.step * beatSec;
+        });
+      } else if (audioData.type === 'chord') {
+        audioData.freqs.forEach(f => {
+          playTone(audioData.duration * beatSec, now, audioData.instrument || 'sine', f);
         });
       } else if (audioData.type === 'inst') {
         playInstrumentSound(audioData.instrument, now);
       }
     }
 
-    function playTone(dur, startTime, inst = 'sine') {
+    function playTone(dur, startTime, inst = 'sine', freq = 523.25) {
       if (!audioCtx) return;
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
 
       if (inst === 'violin') {
         osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(440, startTime);
+        osc.frequency.setValueAtTime(freq, startTime);
         gain.gain.setValueAtTime(0.01, startTime);
         gain.gain.linearRampToValueAtTime(0.3, startTime + 0.1);
         gain.gain.setValueAtTime(0.3, startTime + Math.max(0.1, dur - 0.1));
         gain.gain.linearRampToValueAtTime(0.001, startTime + dur);
       } else if (inst === 'guitar') {
         osc.type = 'triangle';
-        osc.frequency.setValueAtTime(329.63, startTime);
+        osc.frequency.setValueAtTime(freq, startTime);
         gain.gain.setValueAtTime(0.4, startTime);
         gain.gain.exponentialRampToValueAtTime(0.001, startTime + dur);
       } else {
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(523.25, startTime);
+        osc.frequency.setValueAtTime(freq, startTime);
         gain.gain.setValueAtTime(0.3, startTime);
         gain.gain.linearRampToValueAtTime(0.001, startTime + dur);
       }
@@ -239,19 +376,17 @@
         osc.start(startTime);
         osc.stop(startTime + 0.25);
       } else if (inst === 'guitar') {
-        playTone(1.5, startTime, 'guitar');
+        playTone(1.5, startTime, 'guitar', 329.63);
       } else if (inst === 'violin') {
-        playTone(2.0, startTime, 'violin');
+        playTone(2.0, startTime, 'violin', 440);
       }
     }
 
-    // BANK SOAL AUDIO (RITME & INSTRUMEN)
+    // BANK SOAL AUDIO (SOAL NADA DO RE MI FA SOL TELAH MEMPERBARUI SOAL AKOR)
     var audioQuestionsPool = [
       { q: "Dengarkan suara bunyi berikut! Berapa jumlah ketukan nilai durasi bunyi tunggal yang baru saja kamu dengar?", options: ["1 Ketukan", "2 Ketukan", "3 Ketukan", "4 Ketukan"], correctText: "1 Ketukan", audio: { type: "single", duration: 1.0 } },
       { q: "Dengarkan suara bunyi berikut! Berapa jumlah ketukan nilai durasi bunyi tunggal tersebut?", options: ["1 Ketukan", "2 Ketukan", "3 Ketukan", "4 Ketukan"], correctText: "2 Ketukan", audio: { type: "single", duration: 2.0 } },
-      { q: "Dengarkan suara bunyi berikut! Berapa jumlah ketukan nilai durasi bunyi panjang tersebut?", options: ["1 Ketukan", "2 Ketukan", "3 Ketukan", "4 Ketukan"], correctText: "3 Ketukan", audio: { type: "single", duration: 3.0 } },
-      { q: "Dengarkan suara bunyi berikut! Berapa jumlah ketukan nilai durasi bunyi paling panjang yang terdengar?", options: ["1 Ketukan", "2 Ketukan", "3 Ketukan", "4 Ketukan"], correctText: "4 Ketukan", audio: { type: "single", duration: 4.0 } },
-      
+
       { q: "Dengarkan kombinasi pola bunyi dalam 1 birama 4/4 berikut! Pola ketukan bunyi yang terdengar adalah...", options: ["1 ketukan - 1 ketukan - 2 ketukan", "2 ketukan - 2 ketukan", "1 ketukan - 3 ketukan", "4 ketukan penuh"], correctText: "1 ketukan - 1 ketukan - 2 ketukan", audio: { type: "pattern", notes: [{dur: 1, step: 1}, {dur: 1, step: 1}, {dur: 2, step: 2}] } },
       { q: "Dengarkan kombinasi pola bunyi berikut! Nilai gabungan bunyi yang kamu dengar dalam 1 birama adalah...", options: ["2 ketukan - 1 ketukan - 1 ketukan", "1 ketukan - 1 ketukan - 1 ketukan - 1 ketukan", "3 ketukan - 1 ketukan", "2 ketukan - 2 ketukan"], correctText: "2 ketukan - 1 ketukan - 1 ketukan", audio: { type: "pattern", notes: [{dur: 2, step: 2}, {dur: 1, step: 1}, {dur: 1, step: 1}] } },
       { q: "Dengarkan pola ritme berikut! Pola gabungan bunyi yang baru saja dimainkan adalah...", options: ["1 ketukan - 2 ketukan - 1 ketukan", "1 ketukan - 1 ketukan - 2 ketukan", "2 ketukan - 2 ketukan", "3 ketukan - 1 ketukan"], correctText: "1 ketukan - 2 ketukan - 1 ketukan", audio: { type: "pattern", notes: [{dur: 1, step: 1}, {dur: 2, step: 2}, {dur: 1, step: 1}] } },
@@ -269,7 +404,13 @@
       { q: "Dengarkan sampel instrumen musik gesek berikut! Alat musik apakah ini?", options: ["Biola (Violin)", "Gitar", "Drumset", "Angklung"], correctText: "Biola (Violin)", audio: { type: "inst", instrument: "violin" } },
       { q: "Dengarkan suara petikan alat musik berikut! Instrumen melodis/harmonis yang dimaksud adalah...", options: ["Gitar", "Biola", "Drum", "Seruling"], correctText: "Gitar", audio: { type: "inst", instrument: "guitar" } },
       { q: "Dengarkan pola bunyi gesekan panjang berikut! Alat musik gesek yang mampu menghasilkan durasi nada panjang ini adalah...", options: ["Biola", "Drum", "Gitar", "Kendang"], correctText: "Biola", audio: { type: "inst", instrument: "violin" } },
-      { q: "Dengarkan denyut ritmis berikut! Peran instrumen ritmis yang mendominasi seperti audio ini adalah...", options: ["Drum / Perkusi", "Gitar Akustik", "Biola", "Penyanyi Vokal"], correctText: "Drum / Perkusi", audio: { type: "inst", instrument: "drum" } }
+      { q: "Dengarkan denyut ritmis berikut! Peran instrumen ritmis yang mendominasi seperti audio ini adalah...", options: ["Drum / Perkusi", "Gitar Akustik", "Biola", "Penyanyi Vokal"], correctText: "Drum / Perkusi", audio: { type: "inst", instrument: "drum" } },
+
+      { q: "Dengarkan dua nada (interval) yang dibunyikan secara berurutan berikut! Apakah arah pergerakan melodi nada tersebut?", options: ["Naik dari nada Rendah ke Tinggi (C ke G)", "Turun dari nada Tinggi ke Rendah", "Tetap pada nada yang sama", "Tidak memiliki nada sama sekali"], correctText: "Naik dari nada Rendah ke Tinggi (C ke G)", audio: { type: "pattern", notes: [{dur: 1, step: 1, freq: 261.63}, {dur: 1, step: 1, freq: 392.00}] } },
+      
+      // SOAL TEBAK 1 NADA TUNGGAL (SOLFEGGE: DO, RE, MI, FA, SOL)
+      { q: "Dengarkan nada tunggal berikut! Nada apakah yang baru saja kamu dengar (jika tangga nada Do = C)?", options: ["Nada Do (C)", "Nada Mi (E)", "Nada Sol (G)", "Nada La (A)"], correctText: "Nada Mi (E)", audio: { type: "single", duration: 1.5, freq: 329.63, instrument: "sine" } },
+      { q: "Dengarkan nada tunggal berikut! Menurut pendengaranmu, nada apakah yang berbunyi (jika Do = C)?", options: ["Nada Do (C)", "Nada Re (D)", "Nada Fa (F)", "Nada Sol (G)"], correctText: "Nada Sol (G)", audio: { type: "single", duration: 1.5, freq: 392.00, instrument: "sine" } }
     ];
 
     // BANK SOAL TEORI MUSIK
@@ -297,14 +438,14 @@
       { q: "Peran utama drumset dalam lagu ansambel seperti \"Ibu Kita Kartini\" adalah...", options: ["Memainkan melodi utama", "Menjaga tempo dan memberikan fondasi ritmik", "Mengisi harmoni akor", "Menyanyikan syair lagu"], correctText: "Menjaga tempo dan memberikan fondasi ritmik" },
 
       { q: "Tanah tumpah darahku, pada lagu Indonesia Raya, KU berada pada hitungan ...", options: ["1", "3", "4", "2"], correctText: "1" },
-      { q: "Lagu Mars SMPN Binaan Khusus Kota Dumai, Pencipta dan dibuat tahun...", options: ["Zulkarnaen, 2005", "Tulus,2005 ", "Andrigo, 2011", "Dewa, 2020"], correctText: "Musik pengiring tanpa jalurnya vokal utama" },
+      { q: "Lagu Mars SMPN Binaan Khusus Kota Dumai, Pencipta dan dibuat tahun...", options: ["Zulkarnaen, 2005", "Tulus,2005 ", "Andrigo, 2011", "Dewa, 2020"], correctText: "Zulkarnaen, 2005" },
       { q: "Lagu \"Ibu Kita Kartini\" diciptakan oleh...", options: ["C. Simanjuntak", "W.R. Soepratman", "Ismail Marzuki", "L. Manik"], correctText: "W.R. Soepratman" },
 
       { q: "Nada pembentuk Akor C Mayor pada Kelompok 1 terdiri dari nada...", options: ["C - E - G", "C - E - A", "F - A - C", "G - B - D"], correctText: "C - E - G" },
       { q: "Kelompok 2 memainkan Akor Dm (D minor) yang terdiri dari nada...", options: ["D - E - G", "D - F - A", "F - A - C", "G - B - D"], correctText: "D - F - A" },
       { q: "Susunan nada F - A - C merupakan pembentuk akor...", options: ["C Mayor", "D minor", "F Mayor", "G Mayor"], correctText: "F Mayor" },
       { q: "Akor G Mayor yang dimainkan oleh Kelompok 4 terdiri dari susunan nada...", options: ["C - E - G", "D - F - A", "G - A - C", "G - B - D"], correctText: "G - B - D" },
-      { q: "Berdasarkan jenisnya, instrumen musik Angklung dimainkan dengan cara...", options: ["Dipukul", "Digetarkan", "Ditiup", "Dipetik"], correctText: "Digoyang / Digetarkan" },
+      { q: "Berdasarkan jenisnya, instrumen musik Angklung dimainkan dengan cara...", options: ["Dipukul", "Digetarkan", "Ditiup", "Dipetik"], correctText: "Digetarkan" },
 
       { q: "Secara umum, pengertian musik adalah...", options: ["Kumpulan suara atau bunyi yang diatur sedemikian rupa sehingga memiliki irama, lagu, dan keharmonisan", "Coretan warna pada media kanvas yang membentuk keindahan", "Gerakan tubuh yang dilakukan secara berulang sesuai dengan cerita", "Kumpulan kata-kata indah yang dirangkai tanpa nada"], correctText: "Kumpulan suara atau bunyi yang diatur sedemikian rupa sehingga memiliki irama, lagu, dan keharmonisan" },
       { q: "Rangkaian dari sejumlah nada atau bunyi berdasarkan tinggi rendahnya yang teratur disebut...", options: ["Melodi", "Irama / Ritme", "Akor", "Dinamika"], correctText: "Melodi" },
@@ -345,7 +486,6 @@
       return arr;
     }
 
-    // Menggabungkan seluruh bank soal (audio + teori), mengacak seluruhnya, lalu mengambil tepat 50 soal
     var combinedPool = audioQuestionsPool.concat(rawQuestionsPool);
     var selectedQuestions = shuffleArray(combinedPool).slice(0, 50);
 
@@ -376,7 +516,6 @@
 
       document.getElementById("display-student-info").innerText = "Siswa: " + studentName + " | Kelas: " + studentClass;
       
-      // Inisialisasi AudioContext saat tombol diklik pertama kali oleh user
       initAudioContext();
       startQuiz();
     }
@@ -518,11 +657,11 @@
       bar.style.width = percentage + "%";
 
       if (timeLeft <= 10) {
-        bar.style.background = "#e63946";
+        bar.style.background = "#ef4444";
       } else if (timeLeft <= 30) {
-        bar.style.background = "#e76f51";
+        bar.style.background = "#ffe600";
       } else {
-        bar.style.background = "linear-gradient(90deg, #2a9d8f, #e76f51)";
+        bar.style.background = "linear-gradient(90deg, #00f0ff, #ff007f)";
       }
     }
 
@@ -534,6 +673,12 @@
       var isCorrect = (selectedText === correctText);
       userAnswers[currentQIndex] = isCorrect;
       answeredCount++;
+
+      if (isCorrect) {
+        playSFX('correct');
+      } else {
+        playSFX('wrong');
+      }
 
       var allBtns = document.querySelectorAll(".opt-btn");
       allBtns.forEach(function(btn) {
@@ -568,6 +713,8 @@
       userAnswers[currentQIndex] = false;
       answeredCount++;
 
+      playSFX('wrong');
+
       var qData = selectedQuestions[currentQIndex];
       var allBtns = document.querySelectorAll(".opt-btn");
       
@@ -591,15 +738,15 @@
     }
 
     function updateOverallProgress() {
-      var calculatedScore = (correctAnswersCount / selectedQuestions.length) * 100;
+      var calculatedScore = correctAnswersCount * 2;
       document.getElementById("q-counter").innerText = `Terjawab: ${answeredCount} / ${selectedQuestions.length} Soal`;
-      document.getElementById("score-badge").innerText = "Skor: " + Math.round(calculatedScore);
+      document.getElementById("score-badge").innerText = "SKOR: " + calculatedScore;
 
       document.getElementById("finish-btn").style.display = "inline-block";
     }
 
     function sendDataToGoogleSheets() {
-      var finalScore = Math.round((correctAnswersCount / selectedQuestions.length) * 100);
+      var finalScore = correctAnswersCount * 2;
       var payload = {
         timestamp: new Date().toLocaleString("id-ID"),
         nama: studentName,
@@ -624,24 +771,24 @@
 
     function finishQuiz() {
       clearInterval(timerInterval);
-      var finalScore = Math.round((correctAnswersCount / selectedQuestions.length) * 100);
+      var finalScore = correctAnswersCount * 2;
       
       sendDataToGoogleSheets();
 
       document.body.innerHTML = `
-        <div style="min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; background:#0d1b2a; color:#fff; text-align:center; padding:20px;">
-          <h1 style="color:#f4a261; font-size:26px; margin-bottom:15px;">KUIS SELESAI! 🏆</h1>
-          <p style="color:#2a9d8f; font-size:14px; margin-bottom:20px;">Data nilai Anda telah berhasil terdata di sistem Google Sheets.</p>
-          <div style="background:#1b263b; border:2px solid #2a9d8f; padding:20px; border-radius:15px; width:100%; max-width:350px; margin-bottom:20px; text-align:left;">
-            <p style="font-size:15px; margin-bottom:8px; color:#f4a261;">Nama: <strong>${studentName}</strong></p>
-            <p style="font-size:15px; margin-bottom:15px; color:#f4a261;">Kelas: <strong>${studentClass}</strong></p>
-            <hr style="border:0; border-top:1px solid #415a77; margin-bottom:15px;">
+        <div style="min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; background:#0f0c1b; color:#fff; text-align:center; padding:20px;">
+          <h1 style="color:#ffe600; font-size:30px; margin-bottom:15px; text-transform:uppercase; text-shadow:0 0 10px #ffe600;">GAME OVER! 🏆</h1>
+          <p style="color:#00f0ff; font-size:15px; margin-bottom:20px;">Data nilai Anda telah berhasil terdata di sistem Google Sheets.</p>
+          <div style="background:#1a162b; border:3px solid #ff007f; padding:20px; border-radius:20px; width:100%; max-width:350px; margin-bottom:20px; text-align:left; box-shadow:0 0 20px rgba(255,0,127,0.3);">
+            <p style="font-size:15px; margin-bottom:8px; color:#00f0ff;">Nama: <strong>${studentName}</strong></p>
+            <p style="font-size:15px; margin-bottom:15px; color:#00f0ff;">Kelas: <strong>${studentClass}</strong></p>
+            <hr style="border:0; border-top:1px solid #7928ca; margin-bottom:15px;">
             <p style="font-size:16px; margin-bottom:10px;">Soal Terjawab: <strong>${answeredCount} / ${selectedQuestions.length} Soal</strong></p>
-            <p style="font-size:16px; margin-bottom:10px;">Jawaban Benar: <strong style="color:#2a9d8f;">${correctAnswersCount} Soal</strong></p>
-            <p style="font-size:16px; margin-bottom:10px;">Pelanggaran Curang: <strong style="color:${cheatCount > 0 ? '#e63946' : '#2a9d8f'};">${cheatCount} Kali</strong></p>
-            <p style="font-size:22px; font-weight:bold; color:#2a9d8f; margin-top:10px;">Nilai Akhir: ${finalScore}</p>
+            <p style="font-size:16px; margin-bottom:10px;">Jawaban Benar: <strong style="color:#10b981;">${correctAnswersCount} Soal</strong></p>
+            <p style="font-size:16px; margin-bottom:10px;">Pelanggaran Curang: <strong style="color:${cheatCount > 0 ? '#ef4444' : '#10b981'};">${cheatCount} Kali</strong></p>
+            <p style="font-size:26px; font-weight:900; color:#ffe600; margin-top:10px; text-shadow:0 0 10px #ffe600;">NILAI AKHIR: ${finalScore}</p>
           </div>
-          <button onclick="location.reload()" style="background:#2a9d8f; color:#fff; font-size:16px; font-weight:bold; padding:12px 30px; border:none; border-radius:25px; cursor:pointer;">KEMBALI KE HALAMAN UTAMA</button>
+          <button onclick="location.reload()" style="background:linear-gradient(135deg, #00f0ff, #7928ca); color:#fff; font-size:18px; font-weight:bold; padding:14px 35px; border:2px solid #fff; border-radius:30px; cursor:pointer; box-shadow:0 0 15px rgba(0,240,255,0.5);">MAIN LAGI 🔄</button>
         </div>
       `;
     }
