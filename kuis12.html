@@ -172,7 +172,7 @@
     
     <div class="student-form">
       <div class="form-group">
-        <label for="student-name">Nama Lengkap Siswa:</label>
+        <label for="student-name">Nama Lengkap Murid:</label>
         <input type="text" id="student-name" placeholder="Masukkan nama lengkap..." autocomplete="off">
       </div>
       <div class="form-group" style="margin-bottom:0;">
@@ -313,7 +313,23 @@
       const beatSec = 60 / bpm;
       const now = audioCtx.currentTime + 0.05;
 
-      if (audioData.type === 'single') {
+      if (audioData.type === 'solfeggio_quiz') {
+        // PERBAIKAN DILAKUKAN DI SINI:
+        // Play Tangga Nada Acuan (Do - Re - Mi - Fa - Sol) dulu
+        const scaleFreqs = [261.63, 293.66, 329.63, 349.23, 392.00]; // Do, Re, Mi, Fa, Sol
+        let offset = 0;
+        
+        // Membunyikan nada acuan 0.5 detik tiap nada
+        scaleFreqs.forEach(freq => {
+          playTone(0.4, now + offset, 'sine', freq);
+          offset += 0.5;
+        });
+
+        // Jeda sebentar (0.6 detik) lalu bunyikan 1 nada kuis yang ditanyakan
+        offset += 0.6;
+        playTone(1.5, now + offset, 'sine', audioData.targetFreq);
+
+      } else if (audioData.type === 'single') {
         playTone(audioData.duration * beatSec, now, audioData.instrument || 'sine', audioData.freq || 523.25);
       } else if (audioData.type === 'pattern') {
         let currentOffset = 0;
@@ -322,10 +338,6 @@
             playTone(note.dur * beatSec, now + currentOffset, note.inst || 'sine', note.freq || 523.25);
           }
           currentOffset += note.step * beatSec;
-        });
-      } else if (audioData.type === 'chord') {
-        audioData.freqs.forEach(f => {
-          playTone(audioData.duration * beatSec, now, audioData.instrument || 'sine', f);
         });
       } else if (audioData.type === 'inst') {
         playInstrumentSound(audioData.instrument, now);
@@ -382,7 +394,7 @@
       }
     }
 
-    // BANK SOAL AUDIO (SOAL NADA DO RE MI FA SOL TELAH MEMPERBARUI SOAL AKOR)
+    // BANK SOAL AUDIO (DENGAN PATOKAN TANGGA NADA DO RE MI FA SOL DULUAN)
     var audioQuestionsPool = [
       { q: "Dengarkan suara bunyi berikut! Berapa jumlah ketukan nilai durasi bunyi tunggal yang baru saja kamu dengar?", options: ["1 Ketukan", "2 Ketukan", "3 Ketukan", "4 Ketukan"], correctText: "1 Ketukan", audio: { type: "single", duration: 1.0 } },
       { q: "Dengarkan suara bunyi berikut! Berapa jumlah ketukan nilai durasi bunyi tunggal tersebut?", options: ["1 Ketukan", "2 Ketukan", "3 Ketukan", "4 Ketukan"], correctText: "2 Ketukan", audio: { type: "single", duration: 2.0 } },
@@ -404,13 +416,23 @@
       { q: "Dengarkan sampel instrumen musik gesek berikut! Alat musik apakah ini?", options: ["Biola (Violin)", "Gitar", "Drumset", "Angklung"], correctText: "Biola (Violin)", audio: { type: "inst", instrument: "violin" } },
       { q: "Dengarkan suara petikan alat musik berikut! Instrumen melodis/harmonis yang dimaksud adalah...", options: ["Gitar", "Biola", "Drum", "Seruling"], correctText: "Gitar", audio: { type: "inst", instrument: "guitar" } },
       { q: "Dengarkan pola bunyi gesekan panjang berikut! Alat musik gesek yang mampu menghasilkan durasi nada panjang ini adalah...", options: ["Biola", "Drum", "Gitar", "Kendang"], correctText: "Biola", audio: { type: "inst", instrument: "violin" } },
-      { q: "Dengarkan denyut ritmis berikut! Peran instrumen ritmis yang mendominasi seperti audio ini adalah...", options: ["Drum / Perkusi", "Gitar Akustik", "Biola", "Penyanyi Vokal"], correctText: "Drum / Perkusi", audio: { type: "inst", instrument: "drum" } },
+      { q: "Dengarkan denyut ritmis berikut! Peran instrumen ritmis yang mendominasi seperti audio ini meilki...", options: ["Drum / Perkusi", "Gitar Akustik", "Biola", "Penyanyi Vokal"], correctText: "Drum / Perkusi", audio: { type: "inst", instrument: "drum" } },
 
       { q: "Dengarkan dua nada (interval) yang dibunyikan secara berurutan berikut! Apakah arah pergerakan melodi nada tersebut?", options: ["Naik dari nada Rendah ke Tinggi (C ke G)", "Turun dari nada Tinggi ke Rendah", "Tetap pada nada yang sama", "Tidak memiliki nada sama sekali"], correctText: "Naik dari nada Rendah ke Tinggi (C ke G)", audio: { type: "pattern", notes: [{dur: 1, step: 1, freq: 261.63}, {dur: 1, step: 1, freq: 392.00}] } },
       
-      // SOAL TEBAK 1 NADA TUNGGAL (SOLFEGGE: DO, RE, MI, FA, SOL)
-      { q: "Dengarkan nada tunggal berikut! Nada apakah yang baru saja kamu dengar (jika tangga nada Do = C)?", options: ["Nada Do (C)", "Nada Mi (E)", "Nada Sol (G)", "Nada La (A)"], correctText: "Nada Mi (E)", audio: { type: "single", duration: 1.5, freq: 329.63, instrument: "sine" } },
-      { q: "Dengarkan nada tunggal berikut! Menurut pendengaranmu, nada apakah yang berbunyi (jika Do = C)?", options: ["Nada Do (C)", "Nada Re (D)", "Nada Fa (F)", "Nada Sol (G)"], correctText: "Nada Sol (G)", audio: { type: "single", duration: 1.5, freq: 392.00, instrument: "sine" } }
+      // SOAL TEBAK NADA TUNGGAL DENGAN TANGGA NADA ACUAN (DO RE MI FA SOL) DULUAN
+      { 
+        q: "Dengarkan tangga nada Do-Re-Mi-Fa-Sol terlebih dahulu, lalu tebaklah 1 nada terakhir yang dibunyikan! Nada apakah itu?", 
+        options: ["Nada Do (C)", "Nada Mi (E)", "Nada Sol (G)", "Nada Re (D)"], 
+        correctText: "Nada Mi (E)", 
+        audio: { type: "solfeggio_quiz", targetFreq: 329.63 } 
+      },
+      { 
+        q: "Dengarkan patokan nada Do-Re-Mi-Fa-Sol, lalu simak 1 nada terakhir yang diputar. Nada apakah yang kamu dengar?", 
+        options: ["Nada Do (C)", "Nada Re (D)", "Nada Fa (F)", "Nada Sol (G)"], 
+        correctText: "Nada Sol (G)", 
+        audio: { type: "solfeggio_quiz", targetFreq: 392.00 } 
+      }
     ];
 
     // BANK SOAL TEORI MUSIK
@@ -449,7 +471,7 @@
 
       { q: "Secara umum, pengertian musik adalah...", options: ["Kumpulan suara atau bunyi yang diatur sedemikian rupa sehingga memiliki irama, lagu, dan keharmonisan", "Coretan warna pada media kanvas yang membentuk keindahan", "Gerakan tubuh yang dilakukan secara berulang sesuai dengan cerita", "Kumpulan kata-kata indah yang dirangkai tanpa nada"], correctText: "Kumpulan suara atau bunyi yang diatur sedemikian rupa sehingga memiliki irama, lagu, dan keharmonisan" },
       { q: "Rangkaian dari sejumlah nada atau bunyi berdasarkan tinggi rendahnya yang teratur disebut...", options: ["Melodi", "Irama / Ritme", "Akor", "Dinamika"], correctText: "Melodi" },
-      { q: "Unsur dasar musik yang mengatur panjang pendeknya bunyi dan alur ketukan waktu adalah...", options: ["Dinamika", "Ritme / Irama", "Harmoni", "Timbre"], correctText: "Ritme / Irama" },
+      { q: "Unsur dasar musik yang mengatur panjang pendeknya bunyi dan alur ketukan waktu adalah...", options: ["Dinamika", "Ritme", "Harmoni", "Timbre"], correctText: "Ritme" },
       { q: "Bunyi gabungan dua nada atau lebih yang dibunyikan secara bersamaan sehingga terdengar selaras disebut...", options: ["Melodi", "Harmoni / Akor", "Tempo", "Vokal"], correctText: "Harmoni / Akor" },
       { q: "Keras lembutnya suara yang dinyanyikan atau dimainkan dalam sebuah musik dinamakan...", options: ["Dinamika", "Tempo", "Pitch", "Gaya"], correctText: "Dinamika" },
       { q: "Kualitas atau warna bunyi yang membedakan satu instrumen dengan instrumen lainnya dinamakan...", options: ["Timbre", "Melodi", "Tangga nada", "Birama"], correctText: "Timbre" },
